@@ -9,6 +9,8 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 30px;
+    width: 80%;
+    margin: auto;
 }
 
 header .h_left {
@@ -54,4 +56,6 @@ main {
 
 footer {
     padding: 30px;
+    width: 80%;
+    margin: auto;
 }
