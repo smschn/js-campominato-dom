@@ -46,16 +46,21 @@ function() {
 
             if (newSquare.classList == 'square bomb') {
 
+                this.style.backgroundColor = 'red';
+
                 console.log('hai perso');
 
                 alert('Hai perso! La partita verrà resettata.');
 
-                square_containerDom.innerHTML = '';
-
                 pointsDom.innerHTML = `finale: ${points}`;
                 points = 0;
+/* 
+                square_containerDom.innerHTML = ''; */
+
 
             } else if (newSquare.classList == 'square')  {
+
+                this.style.backgroundColor = 'lightblue';
 
                 points += 1;
                 pointsDom.innerHTML = points;
@@ -141,7 +146,7 @@ function createSquare() {
         function(){
 
             // se non ho ancora cliccato, imposto lo sfondo azzurrino; altrimenti, se ho già cliccato e quindi ho già lo sfondo azzurrino, reimposto lo sfondo verde
-            if (this.style.backgroundColor == 'lightblue') {
+/*             if (this.style.backgroundColor == 'lightblue') {
 
                 this.style.backgroundColor = '#7fffd4';
 
@@ -149,7 +154,7 @@ function createSquare() {
 
                 this.style.backgroundColor = 'lightblue';
 
-            }
+            } */
 
             console.log(`The number of the square is: ${this.textContent}`);
 
