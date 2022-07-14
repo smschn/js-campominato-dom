@@ -4,6 +4,36 @@ const square_containerDom = document.getElementById('square_container');
 // richiamare il button
 const buttonDom = document.getElementById('play_btn');
 
+
+
+
+
+
+
+// -- parte nuova
+
+// creare un array che contenga le bombe
+const bombList = [];
+console.log(bombList);
+
+// generare un numero a caso tra minimo e massimo per 16 volte
+const randomBombNumber = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+console.log(randomBombNumber);
+
+// inserire il numero generato dentro all'array bombe
+bombList.push(randomBombNumber);
+console.log(bombList);
+
+
+// -- fine parte nuova
+
+
+
+
+
+
+
+
 // aggiungere evento di attivazione del ciclo
 buttonDom.addEventListener('click',
 function() {
