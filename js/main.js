@@ -9,7 +9,6 @@ const buttonDom = document.getElementById('play_btn');
 
 
 
-
 // -- parte nuova
 
 
@@ -17,25 +16,43 @@ const buttonDom = document.getElementById('play_btn');
 const bombList = [];
 console.log(bombList);
 
-// generare un numero casuale tra 1 e 100 per 16 volte
-for (let i = 0; i < 17; i++) {
+// creare variabile esterna che interrompa il ciclo quando giungo al numero sufficiente di bombe
+let bombCounterCheck = false;
+
+// creare ciclo per creazione numero-bomba
+let i = 0;
+while (bombCounterCheck == false) {
 
     // generare numero casuale tra 1 e 100
     const randomBombNumber = Math.floor(Math.random() * (100 - 1 + 1) + 1);
     console.log(randomBombNumber);
 
-    // inserire il numero generato dentro all'array bombe
-    bombList.push(randomBombNumber);
+    // prima di inserire il numero-bomba nell'array, verificare se sia già presente o meno nell'array bombList
+    if (!bombList.includes(randomBombNumber)) {
+
+        // inserire il numero generato dentro all'array bombe
+        bombList.push(randomBombNumber);
+
+    }
+
+    // controllare quante bombe ci sono nell'array: se sono 16, interrompo il ciclo utilizzando bombCounterCheck
+    if (bombList.length == 16) {
+
+        // cambio il valore booleano per uscire dal ciclo
+        bombCounterCheck = true;
+
+    } else {
+
+        // ..altrimenti incremento
+        i++;
+
+    }
 
 }
 
 console.log(bombList);
 
-
 // -- fine parte nuova
-
-
-
 
 
 
