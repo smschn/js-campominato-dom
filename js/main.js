@@ -9,12 +9,11 @@ const buttonDom = document.getElementById('play_btn');
 
 
 
-// -- parte nuova
+// -- inizio bombe
 
 
 // creare un array che contenga le bombe
 const bombList = [];
-console.log(bombList);
 
 // creare variabile esterna che interrompa il ciclo quando giungo al numero sufficiente di bombe
 let bombCounterCheck = false;
@@ -25,7 +24,6 @@ while (bombCounterCheck == false) {
 
     // generare numero casuale tra 1 e 100
     const randomBombNumber = Math.floor(Math.random() * (100 - 1 + 1) + 1);
-    console.log(randomBombNumber);
 
     // prima di inserire il numero-bomba nell'array, verificare se sia già presente o meno nell'array bombList
     if (!bombList.includes(randomBombNumber)) {
@@ -38,21 +36,20 @@ while (bombCounterCheck == false) {
     // controllare quante bombe ci sono nell'array: se sono 16, interrompo il ciclo utilizzando bombCounterCheck
     if (bombList.length == 16) {
 
-        // cambio il valore booleano per uscire dal ciclo
+        // cambio il valore booleano della condizione per interrompere il ciclo while
         bombCounterCheck = true;
 
     } else {
 
-        // ..altrimenti incremento
+        // ..altrimenti incremento i e continuo a ciclare
         i++;
 
     }
 
 }
 
-console.log(bombList);
 
-// -- fine parte nuova
+// -- fine bombe
 
 
 
