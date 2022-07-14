@@ -4,14 +4,14 @@ const square_containerDom = document.getElementById('square_container');
 // richiamare il button
 const buttonDom = document.getElementById('play_btn');
 
-// creare variabile di comodo da incrementare: indicherà il punteggio
-let points = 0;
-
-
-
+// richiamare il <div> per il punteggio
 const pointsDom = document.getElementById('points_html');
 
+// appena caricata la pagina il punteggio sarà '-'
 pointsDom.innerHTML = '-';
+
+// creare variabile di comodo da incrementare: indicherà il punteggio
+let points = 0;
 
 
 
@@ -23,16 +23,16 @@ buttonDom.addEventListener('click', function() {
     // svuotare il container, svuotandolo ogni volta che clicco sul bottone play
     square_containerDom.innerHTML = '';
 
-    // ???
-    pointsDom.innerHTML = '0';
+    // Inserire variabile del punteggio nel relativo elemento html
+    pointsDom.innerHTML = points;
 
-    // creare variabile che richiama la funzione che crea le bombe (è un array)
+    // creare variabile che richiami la funzione che crea le bombe (è un array)
     const createdBombsArray = createBombsFunction();
 
     // creare ciclo per creare 100 quadrati ed assegnare loro le bombe quando 'i' = numero bomba già presente nell'array
     for (let i = 1; i < 101; i++) {
 
-        // funzione per creare uno square ad ogni ciclo da 1 a 100
+        // creare variabile che richiami la funzione per creare uno square
         const newSquare = createSquareFunction();
 
         // stampo il numero su ogni quadrato
@@ -49,39 +49,40 @@ buttonDom.addEventListener('click', function() {
         // aggiungere eventListener quando clicco sui quadrati ai fini della logica di gioco
         newSquare.addEventListener('click', function(){
 
-            // solo quadrati con entrambe le classi sono bombe: se clicco uno di questi ho perso
+            // solo quadrati con entrambe le classi sono bombe: se clicco uno di questi oppure se clicco tutti quelli che non sono bombe, la partita termina
             if (newSquare.classList == 'square bomb' || points == 84) {
 
+                // alert per partita terminata
                 alert('Partita terminata.');
 
+                // impostare per il newSquare cliccato la classe 'red', che ne imposta lo sfondo sul rosso
                 this.style.backgroundColor = 'red';
 
+                // a partita terminata nel <footer> mostrare un messaggio col punteggio finale
                 pointsDom.innerHTML = `finale: ${points}`;
 
+                // impostare points a 0 affinché al successivo clic di 'play' il contatore cominci a contare punteggio nuovamente da zero
                 points = 0;
 
+            // se il quadrato cliccato ha solo classe 'square'
             } else if (newSquare.classList == 'square')  {
 
+                // ..impostare lo sfondo blu
                 this.style.backgroundColor = 'lightblue';
 
+                // incrementare il punteggio
                 points += 1;
 
+                // mostrare nell'html il punteggio incrementato
                 pointsDom.innerHTML = points;
 
             }
-
-/*             if (points == 0) {
-                
-                square_containerDom.innerHTML = '';
-                
-            } */
 
         })
 
     }
 
 })
-
 
 
 
@@ -121,7 +122,7 @@ function createBombsFunction() {
 
         } else {
 
-            // ..altrimenti incremento i e continuo a ciclare
+            // ..altrimenti incremento 'x' e continuo a ciclare
             x++;
 
         }
@@ -132,6 +133,8 @@ function createBombsFunction() {
     return bombList;
 
 }
+
+
 
 // --- funzione per creare <div square>
 function createSquareFunction() {
@@ -144,24 +147,6 @@ function createSquareFunction() {
 
         // mettere ('appendere') il quadrato creato dentro square_containerDom
         square_containerDom.append(newSquareInFunction);
-
-        // creare un event listener su ogni singola cella che cambi sfondo allo square e scriva in console il numero della cella
-        newSquareInFunction.addEventListener('click', function() {
-
-            // se non ho ancora cliccato, imposto lo sfondo azzurrino; altrimenti, se ho già cliccato e quindi ho già lo sfondo azzurrino, reimposto lo sfondo verde
-/*             if (this.style.backgroundColor == 'lightblue') {
-
-                this.style.backgroundColor = '#7fffd4';
-
-            } else {
-
-                this.style.backgroundColor = 'lightblue';
-
-            } */
-
-            console.log(`The number of the square is: ${this.textContent}`);
-
-        })
 
         // ritornare il quadrato creato alla funzione
         return newSquareInFunction;
