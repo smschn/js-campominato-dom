@@ -7,12 +7,19 @@ const buttonDom = document.getElementById('play_btn');
 // creare variabile di comodo da incrementare: indicherà il punteggio
 let points = 0;
 
+const pointsDom = document.getElementById('points_html');
+
+pointsDom.innerHTML = '0';
+
+
 // aggiungere evento di attivazione del ciclo
 buttonDom.addEventListener('click',
 function() {
 
     // resettare il container, svuotandolo ogni volta che clicco sul bottone play
     square_containerDom.innerHTML = '';
+
+
 
     // ciclo per creare 100 quadrati ed assegnare loro le bombe qualora si verifichi la condizione IF di riga 24
     for (let i=1; i<101; i++) {
@@ -45,26 +52,17 @@ function() {
 
                 square_containerDom.innerHTML = '';
 
+                pointsDom.innerHTML = `finale: ${points}`;
                 points = 0;
-
-
 
             } else if (newSquare.classList == 'square')  {
 
                 points += 1;
+                pointsDom.innerHTML = points;
 
             }
 
             console.log(`Il tuo punteggio è: ${points}`);
-
-            const pointsDom = document.getElementById('points_html');
-
-            pointsDom.innerHTML = points;
-
-            if ( points = 84 ) {
-                console.log('hai vinto!')
-                pointsDom.innerHTML = 'Hai vinto!';
-            }
 
         })
 
@@ -73,6 +71,9 @@ function() {
 })
 
 console.log(points);
+
+
+
 
 
 
