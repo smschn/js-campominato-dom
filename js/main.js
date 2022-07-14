@@ -36,7 +36,7 @@ function() {
         console.log(newSquare);
 
         newSquare.addEventListener('click', function(){
-            
+
             if (newSquare.classList == 'square bomb') {
 
                 console.log('hai perso');
@@ -60,6 +60,11 @@ function() {
             const pointsDom = document.getElementById('points_html');
 
             pointsDom.innerHTML = points;
+
+            if ( points = 84 ) {
+                console.log('hai vinto!')
+                pointsDom.innerHTML = 'Hai vinto!';
+            }
 
         })
 
