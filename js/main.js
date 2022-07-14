@@ -11,7 +11,7 @@ function() {
     // resettare il container, svuotandolo ogni volta che clicco sul bottone play
     square_containerDom.innerHTML = '';
 
-    // ciclo per creare 100 quadrati
+    // ciclo per creare 100 quadrati ed assegnare loro le bombe qualora si verifichi la condizione IF di riga 24
     for (let i=1; i<101; i++) {
 
         // funzione per creare uno square ad ogni ciclo da 1 a 100
@@ -20,9 +20,18 @@ function() {
         // stampo il numero su ogni quadrato
         newSquare.append(i);
 
+        // verificare se il numero-contatore 'i' del ciclo sia dentro l'array delle bombe
+        if (bombList.includes(i)) {
+
+            // aggiungere classe .bomb al quadrato 'i' quando 'i' è incluso nell'array bombe
+            newSquare.classList.add('bomb');
+
+        }
+
     }
 
 })
+
 
 
 
