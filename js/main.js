@@ -12,16 +12,23 @@ const buttonDom = document.getElementById('play_btn');
 
 // -- parte nuova
 
+
 // creare un array che contenga le bombe
 const bombList = [];
 console.log(bombList);
 
-// generare un numero a caso tra 1 e 100
-const randomBombNumber = Math.floor(Math.random() * (100 - 1 + 1) + 1);
-console.log(randomBombNumber);
+// generare un numero casuale tra 1 e 100 per 16 volte
+for (let i = 0; i < 17; i++) {
 
-// inserire il numero generato dentro all'array bombe
-bombList.push(randomBombNumber);
+    // generare numero casuale tra 1 e 100
+    const randomBombNumber = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+    console.log(randomBombNumber);
+
+    // inserire il numero generato dentro all'array bombe
+    bombList.push(randomBombNumber);
+
+}
+
 console.log(bombList);
 
 
