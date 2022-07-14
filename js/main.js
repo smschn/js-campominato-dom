@@ -16,7 +16,7 @@ const buttonDom = document.getElementById('play_btn');
 const bombList = [];
 console.log(bombList);
 
-// generare un numero a caso tra minimo e massimo per 16 volte
+// generare un numero a caso tra 1 e 100
 const randomBombNumber = Math.floor(Math.random() * (100 - 1 + 1) + 1);
 console.log(randomBombNumber);
 
