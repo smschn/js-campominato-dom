@@ -4,6 +4,9 @@ const square_containerDom = document.getElementById('square_container');
 // richiamare il button
 const buttonDom = document.getElementById('play_btn');
 
+// creare variabile di comodo da incrementare: indicherà il punteggio
+let points = 0;
+
 // aggiungere evento di attivazione del ciclo
 buttonDom.addEventListener('click',
 function() {
@@ -28,11 +31,43 @@ function() {
 
         }
 
+
+
+        console.log(newSquare);
+
+        newSquare.addEventListener('click', function(){
+            
+            if (newSquare.classList == 'square bomb') {
+
+                console.log('hai perso');
+
+                alert('Hai perso! La partita verrà resettata.');
+
+                square_containerDom.innerHTML = '';
+
+                points = 0;
+
+
+
+            } else if (newSquare.classList == 'square')  {
+
+                points += 1;
+
+            }
+
+            console.log(`Il tuo punteggio è: ${points}`);
+
+            const pointsDom = document.getElementById('points_html');
+
+            pointsDom.innerHTML = points;
+
+        })
+
     }
 
 })
 
-
+console.log(points);
 
 
 
