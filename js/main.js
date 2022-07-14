@@ -7,9 +7,15 @@ const buttonDom = document.getElementById('play_btn');
 // creare variabile di comodo da incrementare: indicherà il punteggio
 let points = 0;
 
+
+
 const pointsDom = document.getElementById('points_html');
 
 pointsDom.innerHTML = '0';
+
+
+
+// --- inizio ciclo per creare struttura campo minato
 
 // aggiungere evento di attivazione del ciclo
 buttonDom.addEventListener('click', function() {
@@ -17,7 +23,69 @@ buttonDom.addEventListener('click', function() {
     // resettare il container, svuotandolo ogni volta che clicco sul bottone play
     square_containerDom.innerHTML = '';
 
-    // --- inizio creazione bombe
+    // creare variabile che richiama la funzione che crea le bombe (è un array)
+    const createdBombsArray = createBombsFunction();
+
+    // creare ciclo per creare 100 quadrati ed assegnare loro le bombe quando 'i' = numero bomba già presente nell'array
+    for (let i=1; i<101; i++) {
+
+        // funzione per creare uno square ad ogni ciclo da 1 a 100
+        const newSquare = createSquare();
+
+        // stampo il numero su ogni quadrato
+        newSquare.append(i);
+
+        // verificare se il numero-contatore 'i' del ciclo sia dentro l'array delle bombe
+        if (createdBombsArray.includes(i)) {
+
+            // aggiungere classe .bomb al quadrato 'i' quando 'i' è incluso nell'array bombe
+            newSquare.classList.add('bomb');
+
+        }
+
+        newSquare.addEventListener('click', function(){
+
+            if (newSquare.classList == 'square bomb') {
+
+                this.style.backgroundColor = 'red';
+
+                alert('Hai perso! La partita verrà resettata.');
+
+                pointsDom.innerHTML = `finale: ${points}`;
+
+                points = 0;
+
+            } else if (newSquare.classList == 'square')  {
+
+                this.style.backgroundColor = 'lightblue';
+
+                points += 1;
+                pointsDom.innerHTML = points;
+
+            }
+
+            if (points == 0) {
+                
+                square_containerDom.innerHTML = '';
+                
+            }
+
+        })
+
+    }
+
+})
+
+
+
+
+// --- inizio funzioni
+
+
+
+// --- funzione per la creazione delle bombe
+function createBombsFunction() {
+
     // creare un array che contenga le bombe
     const bombList = [];
 
@@ -53,76 +121,26 @@ buttonDom.addEventListener('click', function() {
         }
 
     }
-    // --- fine creazione bombe
 
-    // ciclo per creare 100 quadrati ed assegnare loro le bombe qualora si verifichi la condizione IF di riga 24
-    for (let i=1; i<101; i++) {
+    // ritornare l'array bombList alla funzione
+    return bombList;
 
-        // funzione per creare uno square ad ogni ciclo da 1 a 100
-        const newSquare = createSquare();
+}
 
-        // stampo il numero su ogni quadrato
-        newSquare.append(i);
-
-        // verificare se il numero-contatore 'i' del ciclo sia dentro l'array delle bombe
-        if (bombList.includes(i)) {
-
-            // aggiungere classe .bomb al quadrato 'i' quando 'i' è incluso nell'array bombe
-            newSquare.classList.add('bomb');
-
-        }
-
-        newSquare.addEventListener('click', function(){
-
-            if (newSquare.classList == 'square bomb') {
-
-                this.style.backgroundColor = 'red';
-
-                alert('Hai perso! La partita verrà resettata.');
-
-                pointsDom.innerHTML = `finale: ${points}`;
-
-                points = 0;
-
-            } else if (newSquare.classList == 'square')  {
-
-                this.style.backgroundColor = 'lightblue';
-
-                points += 1;
-                pointsDom.innerHTML = points;
-
-            }
-
-            if (points == 0) {
-                
-                square_containerDom.innerHTML = '';
-                
-            }
-
-            console.log(`Il tuo punteggio è: ${points}`);
-
-        })
-
-    }
-
-})
-
-console.log(points);
-
-// funzione per creare <div square>
+// --- funzione per creare <div square>
 function createSquare() {
 
-        // creo nuovo elemento <div> ad ogni ciclo
-        const newSquareFunction = document.createElement('div');
+        // creare nuovo elemento <div> ad ogni ciclo
+        const newSquareInFunction = document.createElement('div');
 
-        // aggiungo classe .square all'elemento
-        newSquareFunction.classList.add('square');
+        // aggiungere classe .square all'elemento
+        newSquareInFunction.classList.add('square');
 
-        // metto ('appendo') newSquare dentro square_containerDom
-        square_containerDom.append(newSquareFunction);
+        // mettere ('appendere') il quadrato creato dentro square_containerDom
+        square_containerDom.append(newSquareInFunction);
 
         // creare un event listener su ogni singola cella che cambi sfondo allo square e scriva in console il numero della cella
-        newSquareFunction.addEventListener('click', function() {
+        newSquareInFunction.addEventListener('click', function() {
 
             // se non ho ancora cliccato, imposto lo sfondo azzurrino; altrimenti, se ho già cliccato e quindi ho già lo sfondo azzurrino, reimposto lo sfondo verde
 /*             if (this.style.backgroundColor == 'lightblue') {
@@ -139,7 +157,7 @@ function createSquare() {
 
         })
 
-        // ritorno tutto quanto fatto su square
-        return newSquareFunction;
+        // ritornare il quadrato creato alla funzione
+        return newSquareInFunction;
 
 }
