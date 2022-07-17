@@ -105,12 +105,10 @@ function getUniqueRandomNumber(arrayFunc, nMinFunc, nMaxFunc) {
         const randomNumber = getRandomNumber(nMinFunc, nMaxFunc);
         if (arrayFunc.includes(randomNumber) == false) {
             arrayFunc.push(randomNumber);
-            if (arrayFunc.length == 1) {
+            if (arrayFunc.length == 16) {
                 checkBombsNumber = true;
             }
         }
     }
 
 }
-
-console.log(bombsArray)
