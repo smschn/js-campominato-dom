@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Campominato DOM - Bonus</title>
+</head>
+<body>
+
+    <header>
+        <div class="h_left">
+            <img src="img/logo.png" alt="Logo">
+        </div>
+        <div class="h_right">
+            <label for="difficulty">Selezione una difficoltà</label>
+            <select name="idk" id="difficulty">
+                <option value="">---</option>
+                <option value="easy">Facile</option>
+                <option value="medium">Media</option>
+                <option value="hard">Difficile</option>
+            </select>
+            <button id="play_btn">Play</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="container_grid">
+        </div>
+    </main>
+
+    <footer>
+        Il tuo punteggio è: <span id="score">-</span>.
+    </footer>
+
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
